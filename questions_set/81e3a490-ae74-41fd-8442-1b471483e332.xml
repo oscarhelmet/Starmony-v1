@@ -1,0 +1,72 @@
+<question>
+        <q id="1">
+            What is the result of -5 + 3? <blank id="1"></blank>
+        </q>
+        <q id="2">
+            Calculate -2 - (-7). <blank id="2"></blank>
+        </q>
+        <q id="3">
+            What is the value of 8 * (-3)? <blank id="3"></blank>
+        </q>
+        <q id="4">
+            Evaluate -12 / 4. <blank id="4"></blank>
+        </q>
+        <q id="5">
+            If the temperature drops by 5 degrees from -2 degrees, what is the new temperature? <blank id="5"></blank> degrees.
+        </q>
+        <q id="6">
+            A submarine dives 10 meters below sea level, then ascends 3 meters. What is its current depth relative to sea level? <blank id="6"></blank> meters.
+        </q>
+        <q id="7">
+            A bird flies 15 meters above sea level, then dives 20 meters.  What is its current height relative to sea level? <blank id="7"></blank> meters.
+        </q>
+        <q id="8">
+           What is -6 multiplied by -2? <blank id="8"></blank>
+        </q>
+        <q id="9">
+            What is -15 divided by -3? <blank id="9"></blank>
+        </q>
+        <q id="10">
+            If you lose $7 each day for 3 days, what is the total change in your money? $<blank id="10"></blank>
+        </q>
+        <q id="11">
+            What is the result of subtracting -9 from 5? <blank id="11"></blank>
+        </q>
+        <q id="12">
+            What is the sum of -4, 7, and -10? <blank id="12"></blank>
+        </q>
+        <q id="13">
+           -8 + <blank id="13"></blank> = -3
+        </q>
+        <q id="14">
+           <blank id="14"></blank> - (-2) = 6
+        </q>
+        <q id="15">
+            (-4) x <blank id="15"></blank> = 24
+        </q>
+        <q id="16">
+            -30 / <blank id="16"></blank> = -5
+        </q>
+        <q id="17">
+            If x = -2 and y = 5, what is the value of x + y? <blank id="17"></blank>
+        </q>
+        <q id="18">
+             If x = -3 and y = -4, what is the value of x * y? <blank id="18"></blank>
+        </q>
+        <q id="19">
+           If the temperature is -5 degrees Celsius and it rises by 12 degrees, what is the new temperature? <blank id="19"></blank> degrees Celsius
+        </q>
+        <q id="20">
+            A diver descends 8 meters, then ascends 5 meters, then descends another 2 meters. What is the diver's final depth relative to the surface? <blank id="20"></blank> meters.
+        </q>
+         <q id="21">
+            A company's stock price decreased by $2 per share on Monday, increased by $3 on Tuesday, and decreased by $1 on Wednesday.  What is the overall change in the stock price over these three days? $<blank id="21"></blank>
+        </q>
+        <q id="22">
+             What is the result of -7 multiplied by 0? <blank id="22"></blank>
+        </q>
+        <q id="23">
+             Explain why dividing any number by zero is undefined. <blank id="23"></blank>
+        </q>
+
+</question>

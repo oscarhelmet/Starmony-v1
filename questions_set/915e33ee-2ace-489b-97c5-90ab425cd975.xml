@@ -1,0 +1,77 @@
+<question>
+        <q id="1">
+            1 + 1 = <blank id="1"></blank>
+        </q>
+        <q id="2">
+            3 + 2 = <blank id="2"></blank>
+        </q>
+        <q id="3">
+            5 + <blank id="3">_____</blank> = 7
+        </q>
+        <q id="4">
+           <blank id="4">_____</blank> +  1 = 4
+        </q>
+        <q id="5">
+            2 + 2 = <blank id="5"></blank>
+        </q>
+        <q id="6">
+            4 - 1 = <blank id="6"></blank>
+        </q>
+        <q id="7">
+            5 - 2 = <blank id="7"></blank>
+        </q>
+        <q id="8">
+            6 - <blank id="8">_____</blank> = 3
+        </q>
+        <q id="9">
+           <blank id="9">_____</blank> - 1 = 2
+        </q>
+        <q id="10">
+            10 - 5 = <blank id="10"></blank>
+        </q>
+        <q id="11">
+            小明有 1 個蘋果，媽媽再給他 1 個蘋果，小明現在有 <blank id="11"></blank> 個蘋果。
+        </q>
+        <q id="12">
+            小美有 3 塊糖果，她吃掉了 1 塊，小美還有 <blank id="12"></blank> 塊糖果。
+        </q>
+        <q id="13">
+            巴士上有 4 個人，到站後有 2 個人下車，巴士上還有 <blank id="13"></blank> 個人。
+        </q>
+        <q id="14">
+            樹上有 5 隻小鳥，飛走了 2 隻，樹上還有 <blank id="14"></blank> 隻小鳥。
+        </q>
+        <q id="15">
+            花瓶裡有 3 朵花，小麗再插上 2 朵花，花瓶裡現在有 <blank id="15"></blank> 朵花。
+        </q>
+        <q id="16">
+            鉛筆盒裡有 6 枝鉛筆，小明拿走了 3 枝，鉛筆盒裡還有 <blank id="16"></blank> 枝鉛筆。
+        </q>
+        <q id="17">
+            7 - <blank id="17">_____</blank> = 2
+        </q>
+        <q id="18">
+            <blank id="18">_____</blank> + 3 = 8
+        </q>
+        <q id="19">
+            9 - 4 = <blank id="19"></blank>
+        </q>
+        <q id="20">
+            <blank id="20">_____</blank> - 6 = 4
+        </q>
+        <q id="21">
+            1 + <blank id="21">_____</blank> = 10
+        </q>
+        <q id="22">
+            8 - <blank id="22">_____</blank> = 0
+        </q>
+         <q id="23">
+            <blank id="23">_____</blank> +  7 = 7
+        </q>
+        <q id="24">
+           5 - <blank id="24">_____</blank> = 5
+        </q>
+        <q id="25">
+             爸爸買了 6 個橙，媽媽又買了 3 個橙，他們一共買了 <blank id="25"></blank> 個橙。
+        </q>
+</question>

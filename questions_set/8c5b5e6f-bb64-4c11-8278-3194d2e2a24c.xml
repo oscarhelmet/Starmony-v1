@@ -1,0 +1,78 @@
+<question>
+        <q id="1">
+            1 + 1 = <blank id="1"></blank>
+        </q>
+        <q id="2">
+            <blank id="2">_____</blank> + 2 = 3
+        </q>
+        <q id="3">
+            5 + <blank id="3">_____</blank> = 5
+        </q>
+        <q id="4">
+           2 + 2 =  <blank id="4"></blank>
+        </q>
+        <q id="5">
+            <blank id="5">_____</blank> +  1 = 2
+        </q>
+        <q id="6">
+            0 +  <blank id="6">_____</blank> = 0
+        </q>
+        <q id="7">
+            3 + 1 =  <blank id="7"></blank>
+        </q>
+        <q id="8">
+           <blank id="8">_____</blank> + 3 = 4
+        </q>
+        <q id="9">
+            2 + <blank id="9">_____</blank> = 4
+        </q>
+        <q id="10">
+            1 + 4 = <blank id="10"></blank>
+        </q>
+        <q id="11">
+            5 - 1 = <blank id="11"></blank>
+        </q>
+        <q id="12">
+            <blank id="12">_____</blank> - 2 = 2
+        </q>
+        <q id="13">
+            3 - <blank id="13">_____</blank> = 3
+        </q>
+        <q id="14">
+            4 - 2 = <blank id="14"></blank>
+        </q>
+        <q id="15">
+             <blank id="15">_____</blank> - 1 = 0
+        </q>
+        <q id="16">
+            2 - <blank id="16">_____</blank> = 1
+        </q>
+        <q id="17">
+            3 - 1 = <blank id="17"></blank>
+        </q>
+        <q id="18">
+            <blank id="18">_____</blank> - 3 = 1
+        </q>
+        <q id="19">
+            5 - <blank id="19">_____</blank> = 1
+        </q>
+        <q id="20">
+            4 - 4 = <blank id="20"></blank>
+        </q>
+        <q id="21">
+            小明有 1 個蘋果，媽媽再給他 1 個蘋果，小明現在有多少個蘋果？ <blank id="21"></blank>
+        </q>
+        <q id="22">
+            小美有 3 個橙，她吃掉 1 個，小美還有多少個橙？ <blank id="22"></blank>
+        </q>
+        <q id="23">
+            公園裡有 2 隻雀仔，飛走了 1 隻，公園裡還有多少隻雀仔？ <blank id="23"></blank>
+        </q>
+         <q id="24">
+            巴士上有 3 個人，上了 2 個人，巴士上現在有多少人？ <blank id="24"></blank>
+        </q>
+        <q id="25">
+            我有 5 塊糖，吃了 2 塊，我還有多少塊糖？ <blank id="25"></blank>
+        </q>
+
+</question>

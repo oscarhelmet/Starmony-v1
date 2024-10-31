@@ -1,0 +1,77 @@
+<question>
+        <q id="1">
+            1 + 1 = <blank id="1"></blank>
+        </q>
+        <q id="2">
+            3 + 2 = <blank id="2"></blank>
+        </q>
+        <q id="3">
+            5 + 0 =  <blank id="3"></blank>
+        </q>
+        <q id="4">
+            2 + 6 =  <blank id="4"></blank>
+        </q>
+        <q id="5">
+            4 + 4 =  <blank id="5"></blank>
+        </q>
+        <q id="6">
+            9 + 1 =  <blank id="6"></blank>
+        </q>
+        <q id="7">
+            7 + 2 = <blank id="7"></blank>
+        </q>
+        <q id="8">
+           6 + 3 = <blank id="8"></blank>
+        </q>
+        <q id="9">
+            1 + 8 = <blank id="9"></blank>
+        </q>
+        <q id="10">
+            5 + 4 = <blank id="10"></blank>
+        </q>
+        <q id="11">
+            2 - 1 = <blank id="11"></blank>
+        </q>
+        <q id="12">
+            5 - 2 =  <blank id="12"></blank>
+        </q>
+        <q id="13">
+            3 - 3 =  <blank id="13"></blank>
+        </q>
+        <q id="14">
+            8 - 2 =  <blank id="14"></blank>
+        </q>
+        <q id="15">
+            10 - 4 = <blank id="15"></blank>
+        </q>
+        <q id="16">
+           7 - 6 = <blank id="16"></blank>
+        </q>
+        <q id="17">
+            9 - 7 = <blank id="17"></blank>
+        </q>
+        <q id="18">
+            4 - 1 =  <blank id="18"></blank>
+        </q>
+        <q id="19">
+           6 - 0 =  <blank id="19"></blank>
+        </q>
+        <q id="20">
+           5 - 5 =  <blank id="20"></blank>
+        </q>
+        <q id="21">
+            小明有 2 個蘋果，小麗有 3 個蘋果，他們共有多少個蘋果？ <blank id="21"></blank>
+        </q>
+        <q id="22">
+            小華有 5 塊糖果，他吃了 1 塊，還剩下多少塊糖果？ <blank id="22"></blank>
+        </q>
+        <q id="23">
+            樹上有 7 隻小鳥，飛走了 3 隻，現在樹上有多少隻小鳥？ <blank id="23"></blank>
+        </q>
+        <q id="24">
+           媽媽買了 4 個橙，爸爸又買了 5 個橙，他們一共買了多少個橙？ <blank id="24"></blank>
+        </q>
+        <q id="25">
+           我有 9 支鉛筆，送給朋友 2 支，我還有多少支鉛筆？ <blank id="25"></blank>
+        </q>
+</question>

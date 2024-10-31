@@ -1,0 +1,78 @@
+<question>
+        <q id="1">
+            1 + 1 = <blank id="1"></blank>
+        </q>
+        <q id="2">
+            <blank id="2">_____</blank> + 2 = 3
+        </q>
+        <q id="3">
+            4 + <blank id="3">_____</blank> = 4
+        </q>
+        <q id="4">
+            5 + 0 =  <blank id="4"></blank>
+        </q>
+        <q id="5">
+           2 + 3 = <blank id="5"></blank>
+        </q>
+        <q id="6">
+            <blank id="6">_____</blank> + 1 = 6
+        </q>
+        <q id="7">
+            2 + <blank id="7">_____</blank> = 7
+        </q>
+        <q id="8">
+            0 + 8 = <blank id="8"></blank>
+        </q>
+        <q id="9">
+            3 + 6 = <blank id="9"></blank>
+        </q>
+        <q id="10">
+            <blank id="10">_____</blank> + 3 = 10
+        </q>
+        <q id="11">
+            9 - 1 = <blank id="11"></blank>
+        </q>
+        <q id="12">
+            <blank id="12">_____</blank> - 2 = 7
+        </q>
+        <q id="13">
+            4 - <blank id="13">_____</blank> = 4
+        </q>
+        <q id="14">
+            5 - 0 =  <blank id="14"></blank>
+        </q>
+        <q id="15">
+           8 - 3 = <blank id="15"></blank>
+        </q>
+        <q id="16">
+            <blank id="16">_____</blank> - 1 = 5
+        </q>
+        <q id="17">
+            7 - <blank id="17">_____</blank> = 2
+        </q>
+        <q id="18">
+            10 - 2 = <blank id="18"></blank>
+        </q>
+        <q id="19">
+            3 - 3 = <blank id="19"></blank>
+        </q>
+        <q id="20">
+            <blank id="20">_____</blank> - 3 = 6
+        </q>
+        <q id="21">
+            小明有 2 個蘋果，小麗有 3 個蘋果，他們共有多少個蘋果？ <blank id="21"></blank>
+        </q>
+        <q id="22">
+            小明有 5 個糖果，他吃了 2 個，還剩下多少個糖果？ <blank id="22"></blank>
+        </q>
+        <q id="23">
+            樹上有 3 隻小鳥，飛走了 1 隻，樹上還有多少隻小鳥？ <blank id="23"></blank>
+        </q>
+        <q id="24">
+            媽媽買了 4 個橙，爸爸買了 5 個橙，他們一共買了多少個橙？ <blank id="24"></blank>
+        </q>
+        <q id="25">
+            小美有 7 支鉛筆，她送給朋友 3 支，她還剩下多少支鉛筆？ <blank id="25"></blank>
+        </q>
+
+</question>

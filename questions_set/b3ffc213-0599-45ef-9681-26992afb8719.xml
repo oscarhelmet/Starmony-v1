@@ -1,0 +1,32 @@
+<question>
+        <q id="1">
+            John buys $a$ apples and $b$ bananas.  An apple costs $2 and a banana costs $3. Write down a formula for the total cost $C$ in terms of $a$ and $b$. <blank id="1"></blank>
+        </q>
+        <q id="2">
+            A car travels at a speed of $v$ km/h for $t$ hours. Write down a formula for the distance travelled $d$ in km. <blank id="2"></blank>
+        </q>
+        <q id="3">
+            Mary has $x$ dollars. She spends $y$ dollars on a book. Write down a formula for the amount of money $M$ she has left.  <blank id="3"></blank>
+        </q>
+        <q id="4">
+            If $p=3q-5$ and $q=7$, find the value of $p$.<blank id="4"></blank>
+        </q>
+        <q id="5">
+            If $A=lw$, $l=5$ and $w=6$. Evaluate the value of $A$.<blank id="5"></blank>
+        </q>
+        <q id="6">
+             The sum of two numbers is 25. If one number is $x$, write an expression for the other number.<blank id="6"></blank>
+        </q>
+        <q id="7">
+             The perimeter of a rectangle is given by $P=2(l+w)$. If $l=10$ and $w=4$, find the perimeter.  <blank id="7"></blank>
+        </q>
+        <q id="8">
+           Amy bought $n$ pens which cost $5 each and $m$ books which cost $12 each. The total cost is $C$. Write a formula of $C$ in terms of $n$ and $m$.<blank id="8"></blank>
+        </q>
+        <q id="9">
+             If $3x+4=19$. Find the value of $x$.<blank id="9"></blank>
+        </q>
+        <q id="10">
+             If $2y - 6= 8$. What is the value of $y$?<blank id="10"></blank>
+        </q>
+</question>

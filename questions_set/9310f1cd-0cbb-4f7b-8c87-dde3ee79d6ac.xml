@@ -1,0 +1,77 @@
+<question>
+        <q id="1">
+            A circuit where all components are connected in a single loop is called a <blank id="1">series</blank> circuit.
+        </q>
+        <q id="2">
+            A  <blank id="2">parallel</blank> circuit has multiple paths for the current to flow.
+        </q>
+        <q id="3">
+           In a series circuit, if one bulb goes out, what happens to the other bulbs? <blank id="3">They also go out.</blank>
+        </q>
+        <q id="4">
+            In a parallel circuit, if one bulb goes out, what happens to the other bulbs?<blank id="4">They stay on.</blank>
+        </q>
+        <q id="5">
+           Which type of circuit is used in most household wiring? <blank id="5">Parallel</blank>
+        </q>
+        <q id="6">
+             <blank id="6">Current</blank> is the same at every point in a series circuit.
+        </q>
+        <q id="7">
+            <blank id="7">Voltage</blank> is the same across each component in a parallel circuit.
+        </q>
+        <q id="8">
+           The total resistance in a series circuit is the <blank id="8">sum</blank> of the individual resistances.
+        </q>
+        <q id="9">
+           The total resistance in a parallel circuit is <blank id="9">less</blank> than the smallest individual resistance.
+        </q>
+        <q id="10">
+           Draw a simple series circuit with a battery and two bulbs. <blank id="10"> (Drawing should show one loop with a battery and two bulbs connected in a line.)</blank>
+        </q>
+        <q id="11">
+            Draw a simple parallel circuit with a battery and two bulbs. <blank id="11"> (Drawing should show a battery with two separate branches, each containing a bulb.)</blank>
+        </q>
+        <q id="12">
+           If two bulbs are connected in series to a 6V battery, and each bulb is rated at 3V, how bright will each bulb be? <blank id="12">Normal brightness</blank>
+        </q>
+        <q id="13">
+            If two identical bulbs are connected in parallel to a 6V battery, how bright will each bulb be compared to if it was connected to the battery alone?<blank id="13">The same brightness</blank>
+        </q>
+        <q id="14">
+            True or false: In a series circuit, the more bulbs you add, the dimmer each bulb gets. <blank id="14">True</blank>
+        </q>
+        <q id="15">
+            True or false: In a parallel circuit, the more bulbs you add, the dimmer each bulb gets.  <blank id="15">False</blank>
+        </q>
+        <q id="16">
+            What unit is current measured in? <blank id="16">Amperes (A)</blank>
+        </q>
+        <q id="17">
+            What unit is voltage measured in? <blank id="17">Volts (V)</blank>
+        </q>
+        <q id="18">
+           What unit is resistance measured in? <blank id="18">Ohms (Ω)</blank>
+        </q>
+        <q id="19">
+            A circuit has two 2Ω resistors in series. What is the total resistance?<blank id="19">4Ω</blank>
+        </q>
+         <q id="20">
+           A circuit has two 2Ω resistors in parallel. What is the total resistance? <blank id="20">1Ω</blank>
+        </q>
+        <q id="21">
+            Adding more components to a series circuit increases the total <blank id="21">resistance</blank>.
+        </q>
+        <q id="22">
+            Adding more components to a parallel circuit decreases the total <blank id="22">resistance</blank>.
+        </q>
+        <q id="23">
+            The flow of electrons in a circuit is called <blank id="23">current</blank>.
+        </q>
+        <q id="24">
+            Voltage is the <blank id="24">potential difference</blank> between two points in a circuit.
+        </q>
+        <q id="25">
+             Resistance is a measure of how much a material <blank id="25">opposes</blank> the flow of current.
+        </q>
+</question>

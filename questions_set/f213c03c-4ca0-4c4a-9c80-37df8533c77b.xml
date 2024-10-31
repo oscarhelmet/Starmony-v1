@@ -1,0 +1,71 @@
+<question>
+        <q id="1">
+            Factorize  <blank id="1"></blank>.
+        </q>
+        <q id="2">
+            Factorize $4x^2 - 9y^2$. <blank id="2"></blank>
+        </q>
+        <q id="3">
+            Factorize $x^2 + 6x + 9$. <blank id="3"></blank>
+        </q>
+        <q id="4">
+            Factorize $2x^2 + 5x + 2$. <blank id="4"></blank>
+        </q>
+        <q id="5">
+            Factorize $3x^2 - 2x - 8$. <blank id="5"></blank>
+        </q>
+        <q id="6">
+            Expand $(x+2)(x-3)$. <blank id="6"></blank>
+        </q>
+        <q id="7">
+             Expand $(2x - 1)^2$. <blank id="7"></blank>
+        </q>
+        <q id="8">
+            Expand $(x+1)(x^2 - x + 1)$. <blank id="8"></blank>
+        </q>
+        <q id="9">
+            If $x + y = 7$ and $xy = 12$, find the value of $x^2 + y^2$. <blank id="9"></blank>
+        </q>
+        <q id="10">
+            If $a - b = 3$ and $ab = 4$, find the value of $a^2 + b^2$. <blank id="10"></blank>
+        </q>
+        <q id="11">
+            If $x + \frac{1}{x} = 5$, find the value of $x^2 + \frac{1}{x^2}$. <blank id="11"></blank>
+        </q>
+        <q id="12">
+            Factorize $a^3 + b^3$. <blank id="12"></blank>
+        </q>
+        <q id="13">
+            Factorize $8x^3 - 27y^3$. <blank id="13"></blank>
+        </q>
+        <q id="14">
+            Factorize $x^3 + 3x^2 + 3x + 1$. <blank id="14"></blank>
+        </q>
+        <q id="15">
+            If $a + b + c = 0$, prove that $a^3 + b^3 + c^3 = 3abc$. <blank id="15"></blank>
+        </q>
+        <q id="16">
+            Simplify $\frac{x^2-4}{x+2}$.  <blank id="16"></blank>
+        </q>
+        <q id="17">
+            Simplify $\frac{x^3-8}{x-2}$. <blank id="17"></blank>
+        </q>
+        <q id="18">
+            Simplify $\frac{x^2+4x+4}{x^2-4}$. <blank id="18"></blank>
+        </q>
+        <q id="19">
+            Solve the equation $x^2 + 5x + 6 = 0$. <blank id="19"></blank>
+        </q>
+        <q id="20">
+            Solve the equation $2x^2 - 3x - 2 = 0$. <blank id="20"></blank>
+        </q>
+        <q id="21">
+            Find the roots of the equation $x^2 - 4x + 3 = 0.$ <blank id="21"></blank>
+        </q>
+        <q id="22">
+            Find the values of k for which the equation $kx^2 + 4x + 1 = 0$ has equal roots.  <blank id="22"></blank>
+        </q>
+
+
+
+</question>

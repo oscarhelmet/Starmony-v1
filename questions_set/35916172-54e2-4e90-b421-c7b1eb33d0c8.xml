@@ -1,0 +1,77 @@
+<question>
+<q id="1">
+SQL stands for Structured <blank id="1">_____</blank> Language.
+</q>
+<q id="2">
+Which command is used to create a new table in a database? <blank id="2">_____</blank>
+</q>
+<q id="3">
+The <blank id="3">_____</blank> command is used to retrieve data from a database.
+</q>
+<q id="4">
+To add a new row to a table, we use the <blank id="4">_____</blank> statement.
+</q>
+<q id="5">
+Which keyword is used to specify a unique constraint for a column or set of columns? <blank id="5">_____</blank>
+</q>
+<q id="6">
+What does SQL stand for? <blank id="6">_____</blank>
+</q>
+<q id="7">
+Which SQL statement is used to update data in a database? <blank id="7">_____</blank>
+</q>
+<q id="8">
+What does DDL stand for in the context of SQL?  <blank id="8">_____</blank>
+</q>
+<q id="9">
+Give three examples of DDL commands.  <blank id="9">_____</blank>
+</q>
+<q id="10">
+What does DML stand for in SQL? <blank id="10">_____</blank>
+</q>
+<q id="11">
+Give three examples of DML commands. <blank id="11">_____</blank>
+</q>
+<q id="12">
+The <blank id="12">_____</blank> clause is used to filter records in a SELECT statement.
+</q>
+<q id="13">
+Which keyword is used to sort the result set of a query?  <blank id="13">_____</blank>
+</q>
+<q id="14">
+What is the purpose of the PRIMARY KEY constraint? <blank id="14">_____</blank>
+</q>
+<q id="15">
+Explain the difference between WHERE and HAVING clauses in SQL. <blank id="15">_____</blank>
+</q>
+<q id="16">
+Write an SQL query to select all columns from a table named "Students". <blank id="16">_____</blank>
+</q>
+<q id="17">
+Write a query to select the "Name" and "Age" columns from the "Students" table where the "Age" is greater than 18.  <blank id="17">_____</blank>
+</q>
+<q id="18">
+What is the purpose of the JOIN clause in SQL? <blank id="18">_____</blank>
+</q>
+<q id="19">
+List the different types of JOINs in SQL.  <blank id="19">_____</blank>
+</q>
+<q id="20">
+Write a query to delete a row from the "Students" table where the "StudentID" is 123.  <blank id="20">_____</blank>
+</q>
+<q id="21">
+What SQL command is used to add a new column to an existing table? <blank id="21">_____</blank>
+</q>
+<q id="22">
+How can you rename a table in SQL?  Provide the SQL command and syntax. <blank id="22">_____</blank>
+</q>
+<q id="23">
+What is a subquery in SQL? Explain with an example. <blank id="23">_____</blank>
+</q>
+<q id="24">
+What is the difference between `COUNT(*)` and `COUNT(column_name)` in SQL? <blank id="24">_____</blank>
+</q>
+<q id="25">
+What are aggregate functions in SQL? Give three examples. <blank id="25">_____</blank>
+</q>
+</question>
