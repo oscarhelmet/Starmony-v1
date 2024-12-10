@@ -1,0 +1,40 @@
+<dashboard>
+    <accuracy>
+        <part id='a'>
+            <title>Basic Factorisation</title>
+            <value>80</value>
+        </part>
+        <part id='b'>
+            <title>Advanced Factorisation</title>
+            <value>75</value>
+        </part>
+        <part id='c'>
+            <title>Applications and Explanations</title>
+            <value>90</value>
+        </part>
+
+    </accuracy>
+
+    <strength>
+        <p>The student demonstrates a good understanding of basic factorisation techniques, such as factoring trinomials and difference of squares.</p>
+        <p>The student can apply factorisation to solve problems involving area and volume.</p>
+        <p>The student can clearly explain the difference between different types of factorisation.</p>
+    </strength>
+    
+    <weakness>
+        <p>The student struggled with question 4, involving a trinomial with a leading coefficient greater than 1. </p>
+        <p>The student left question 9 blank, indicating a difficulty with grouping involving a difference of squares disguised within the expression.</p>
+        <p>The student made a minor error in question 13, not fully factoring the difference of squares.  The answer should be (x-2)(x+2)(x^2+4)</p>
+        <p>While the student attempted question 18, one of the proposed solutions is incorrect, suggesting potential issues with signs when factoring trinomials with leading coefficients greater than 1.</p>
+        <p>In question 19, the student's answer is incorrect, indicating a problem with factoring more complex expressions, possibly involving cubic equations.</p>
+    </weakness>
+
+    <recommendation>
+        <p>Review factoring trinomials with leading coefficients greater than 1. Practice problems like question 4 will help solidify this skill.  Ensure the student understands the different methods available, such as decomposition or the "AC" method.</p>
+        <p>Practice identifying and factoring the difference of squares, especially when it's not immediately apparent, as in question 9.  Work through examples that require grouping and rearranging terms before factoring.</p>
+        <p>Reinforce the concept of factoring completely.  In question 13, the student stopped at $x^2 - 4$. Emphasize checking for further factorisation opportunities.</p>
+        <p>Review the process for factoring trinomials with negative terms, focusing on how signs affect the factors. This will help avoid errors like the one seen in question 18.</p>
+        <p>Practice factoring cubic expressions, particularly those involving multiple steps or a combination of techniques.  This will help the student tackle problems like question 19 more effectively.</p>
+
+    </recommendation>
+</dashboard>
