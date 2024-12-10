@@ -7,7 +7,7 @@ from google.cloud import texttospeech
 class Google:
     def __init__(self):
         self.model = self.model_get()
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/lemon/AI/EduTech/starmony-c1fed75d5eca.json'
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'cred.json'
         
     def model_get(self, model='others'):
         metadata = {'others':'gemini-1.5-pro-002'}
