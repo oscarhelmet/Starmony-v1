@@ -14,15 +14,17 @@
 
     <header>
         <nav>
-            <ul>
-                <li><a href="{{ url_for('index') }}">Home</a></li>
-                <li><a href="{{ url_for('generate_questions') }}">Generate Questions</a></li>
-            </ul>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/reading">Reading</a></li>
+            <li><a href="/listening">Listening</a></li>
+            <li><a href="/generate">Custom Quiz</a></li>
+          </ul>
         </nav>
-    </header>
+      </header>
     {{dashboard|safe}}
     <footer>
-        <p>&copy; 2024 Starmony. All rights reserved.</p>
+        <p>&copy; 2024 Oscar So. All rights reserved.</p>
     </footer>
 
 </body>

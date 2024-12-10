@@ -44,7 +44,7 @@ def dashboard(qs, ans, language = 'English'):
 
     template = f"""questions set:{qs}
                     
-                    answer respond:{ans}
+                    student's respond [to be checked]:{ans}
                     
                     Return the report in the following language: {language}
     """

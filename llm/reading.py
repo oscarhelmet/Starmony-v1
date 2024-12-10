@@ -1,7 +1,11 @@
 from llm.google import Google 
 from llm.utils import remove_code_blocks
 
-def generate_question(grade, subject, chapter, language, noq):
+def gen_reading(grade, chapter=None):
+
+    if chapter == None:
+        seed = random.randint(0,10000000) 
+        chapter=f"random topic,  seed = {seed}"
 
 
     grade_descriptions = {
@@ -11,16 +15,29 @@ def generate_question(grade, subject, chapter, language, noq):
         3 : 'Pre-college level for students who are studing in high school, having most of the high school knowledge.'
     }
 
-    print(grade, subject, chapter, language, noq)
+    print(grade, chapter)
 
-    system_instruction = f"""
-    You are an Excercise publisher for Hong Kong students.
-    Your task is to write questions regarding the related topic 
-    You will be received a topic to create the worksheet.
-    Organise it and write it question by question, with subquestions if needed.
-    You should make {noq} questions per request in following format:
+    system_instruction = """
+-Make 3 code blocks to show 3 different things
+-1: A reading passage (include a title)
+-2: a set of questions (Multiple-choice, Fill in the blanks, summary cloze, long questions[reply in complete sentence])
+-3: answers for the questions 
 
-    - for quesions, use the following xml format:
+- Difficulties: IETLS level 2-5 [equivalent: Hong Kong Secondary 1-3]
+- Questions limits less than 30
+
+- for quesions, use the following xml format:
+    <question>
+        <q id="1">
+            Question <blank id="1">_____</blank> is cool.
+        </q>
+    </question>
+    
+    <blank> is the expected user input field. Show "______" only when the answer is inline. 
+
+
+    Example:
+    ```
     <question>
         <!-- Fill in the blank question -->
         <q id="1">
@@ -51,38 +68,44 @@ def generate_question(grade, subject, chapter, language, noq):
         </more_choice>
     </question>
     ```
+    
+    for summary cloze, mark as <q>
 
-    -for answers, use the following format:
-        ```
-        1. 2
-        2. blank
-        ```
-    -for all output code blocks, just use 
-    ```(NO TYPE SPECIFICATION)
-    content 
-    ``` is fine for the parser, other wise will be ignored.
+-for answers, use the following format:
+    ```
+    1. 2
+    2. blank
+    ```
+-for all output code blocks, just use 
+```(NO TYPE SPECIFICATION)
+content 
+``` is fine for the parser, other wise will be ignored.
     """
 
-    template = f"""Make a set of questions for {chapter} in {subject} Subject with the style of {grade_descriptions[int(grade)]}. The questions should be in the language of {language}"""
 
-    return Google()\
+    template = f"""Make a set of questions for {chapter} with the style of {grade_descriptions[int(grade)]}."""
+
+
+    res = Google()\
             .generate(template = template,
                 system_instructions = system_instruction,
                 top_p = 0.95,
                 temperature = 1,
                 top_k = None,
                 max_output_tokens = None)
-    
+
+    print(res)
+    return res
 
 
-def seperate_qa(input):
-    """Separates the LLM output into SSML, questions and answers from markdown code blocks.
+def seperate_reading(input):
+    """Separates the LLM output into passage, questions and answers from markdown code blocks.
     
     Args:
-        input (str): The raw LLM output containing markdown code blocks for SSML, questions and answers
+        input (str): The raw LLM output containing markdown code blocks for passage, questions and answers
         
     Returns:
-        tuple: (ssml, questions, answers) strings
+        tuple: (passage, questions, answers) strings
     """
     # Split by markdown code blocks
     parts = input.split("```")
@@ -90,11 +113,14 @@ def seperate_qa(input):
     # Remove empty strings and whitespace
     parts = [p.strip() for p in parts if p.strip()]
     
-    if len(parts) != 2:  # We expect 3 code blocks with content
-        return None, None
+    if len(parts) != 3:  # We expect 3 code blocks with content
+        return None, None, None
         
     # Get the content from each code block
-    questions = parts[0] 
-    answers = parts[1]
+    passage = parts[0]
+    questions = parts[1] 
+    answers = parts[2]
     
-    return questions, answers
+    return passage, questions, answers
+
+

@@ -1,5 +1,9 @@
 from vertexai.generative_models import GenerativeModel, SafetySetting
 import os
+import uuid
+from google.cloud import texttospeech 
+
+
 class Google:
     def __init__(self):
         self.model = self.model_get()
@@ -54,3 +58,41 @@ class Google:
         return res 
         
         
+def t2s(ssml, speaking_rate=0.8):
+
+
+    print("transcripts:\n", ssml)
+    
+    """Converts SSML text to speech using Google Cloud Text-to-Speech API.
+    
+    Args:
+        ssml (str): The SSML text to convert to speech
+        
+    Returns:
+        bytes: The audio content as bytes
+    """
+    client = texttospeech.TextToSpeechClient()
+    
+    synthesis_input = texttospeech.SynthesisInput(ssml=ssml)
+    
+    voice = texttospeech.VoiceSelectionParams(
+        language_code="en-US",
+        ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL
+    )
+    
+    audio_config = texttospeech.AudioConfig(
+        audio_encoding=texttospeech.AudioEncoding.MP3,
+        speaking_rate=speaking_rate
+    )
+    
+    response = client.synthesize_speech(
+        input=synthesis_input,
+        voice=voice,
+        audio_config=audio_config
+    )
+    session = str(uuid.uuid4())
+    path = f'static/audios/{session}.mp3'
+    with open(path, 'wb') as f:
+        f.write(response.audio_content)
+    
+    return f"{session}.mp3"

@@ -1,11 +1,12 @@
 import xml.etree.ElementTree as ET
 import requests
 
-
 def parse_question_xml(xml):
     """Parse the XML question data and return a list of questions."""
     root = ET.fromstring(xml)
     questions = []
+    
+    # Process regular questions with blanks
     for question_node in root.findall('q'):
         question_text = question_node.text.strip() if question_node.text else ""
         blanks = []
@@ -19,26 +20,110 @@ def parse_question_xml(xml):
                 question_text += elem.text.strip() if elem.text else ""
             
             if elem.tail:
-                question_text += elem.tail.strip() if elem.text else ""
+                question_text += elem.tail.strip()
         
-        question = {
+        questions.append({
+            'type': 'blank',
             'id': question_node.get('id'),
             'text': question_text,
             'blanks': blanks
-        }
-        questions.append(question)
+        })
+    
+    # Process multiple choice questions (radio)
+    for mc_node in root.findall('multiple_choice'):
+        prompt = mc_node.find('prompt').text.strip() if mc_node.find('prompt') is not None else ""
+        choices = []
+        for choice in mc_node.findall('choice'):
+            choices.append({
+                'id': choice.get('id'),
+                'text': choice.text.strip() if choice.text else ""
+            })
+        
+        questions.append({
+            'type': 'multiple_choice',
+            'id': mc_node.get('id'),
+            'prompt': prompt,
+            'choices': choices
+        })
+    
+    # Process checkbox questions
+    for more_choice_node in root.findall('more_choice'):
+        prompt = more_choice_node.find('prompt').text.strip() if more_choice_node.find('prompt') is not None else ""
+        choices = []
+        for choice in more_choice_node.findall('choice'):
+            choices.append({
+                'id': choice.get('id'),
+                'text': choice.text.strip() if choice.text else ""
+            })
+        
+        questions.append({
+            'type': 'more_choice',
+            'id': more_choice_node.get('id'),
+            'prompt': prompt,
+            'choices': choices
+        })
+    
     return questions
 
 def render_questions(questions):
     """Render the questions on the page."""
     html = '<div class="container">\n'
     for question in questions:
-        html += f"""
-        <div class="question">
-            <p>{question['id']}. {question['text']}</p>
-            <input type="text" placeholder="{question['blanks'][0]['text']}">
-        </div>
-        """
+        if question['type'] == 'blank':
+            html += f"""
+            <div class="question">
+                <p><i class="bi bi-patch-question-fill"></i> {question['id']}. {question['text']}</p>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Answers | 答案</span>
+                    <input type="text" class="form-control" name="q{question['id']}" 
+                           aria-label="" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            """
+        elif question['type'] == 'multiple_choice':
+            html += f"""
+            <div class="question">
+                <p><i class="bi bi-patch-question-fill"></i> {question['id']}. {question['prompt']}</p>
+                <div class="mb-3">
+            """
+            for choice in question['choices']:
+                html += f"""
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" 
+                               name="q{question['id']}" 
+                               id="q{question['id']}_{choice['id']}" 
+                               value="{choice['id']}">
+                        <label class="form-check-label" for="q{question['id']}_{choice['id']}">
+                            {choice['text']}
+                        </label>
+                    </div>
+                """
+            html += """
+                </div>
+            </div>
+            """
+        elif question['type'] == 'more_choice':
+            html += f"""
+            <div class="question">
+                <p><i class="bi bi-patch-question-fill"></i> {question['id']}. {question['prompt']}</p>
+                <div class="mb-3">
+            """
+            for choice in question['choices']:
+                html += f"""
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" 
+                               name="q{question['id']}_{choice['id']}" 
+                               id="q{question['id']}_{choice['id']}" 
+                               value="{choice['id']}">
+                        <label class="form-check-label" for="q{question['id']}_{choice['id']}">
+                            {choice['text']}
+                        </label>
+                    </div>
+                """
+            html += """
+                </div>
+            </div>
+            """
     html += '</div>'
     return html
 

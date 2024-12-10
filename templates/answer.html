@@ -20,37 +20,121 @@
 
     <header>
         <nav>
-            <ul>
-                <li><a href="{{ url_for('index') }}">Home</a></li>
-                <li><a href="{{ url_for('generate_questions') }}">Generate Questions</a></li>
-            </ul>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/reading">Reading</a></li>
+            <li><a href="/listening">Listening</a></li>
+            <li><a href="/generate">Custom Quiz</a></li>
+          </ul>
         </nav>
     </header>
 
     <main>
         <div class="row justify-content-center" style="min-height: calc(100vh - 50px - 76.78px - 96px) !important;
     align-items: center;">
-        <div class="col-md-8">
-        <div class="card">
-            <div class="card-header text-center py-3">
-                <h2 class="mb-0">Answer the Questions</h2>
-            </div>
-            <div class="card-body p-4">
-                <form id="answer-form" action="{{ url_for('answer') }}" method="POST">
-                    <div class="questions">
-                        {% for question in questions %}
-                        <div class="question">
-                            <p><i class="bi bi-patch-question-fill"></i> {{ question.text }}</p>
-                            {% for blank in question.blanks %}
-
-
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"> Answers | 答案</span>
-                                <input type="text" class="form-control" name="q{{ question.id }}_{{ blank.id }}"
-                                    aria-label="" aria-describedby="basic-addon1">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header text-center py-3">
+                        <h2 class="mb-0">Answer the Questions</h2>
+                    </div>
+                    <div class="card-body p-4">
+                        {% if audio %}
+                        <div class="audio-section mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="bi bi-headphones"></i> Listening Section</h5>
+                                    <div class="audio-controls text-center">
+                                        <audio id="listening-audio" controls class="w-100">
+                                            <source src="{{ url_for('static', filename='audios/' + audio) }}" type="audio/mpeg">
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                        <div class="mt-2">
+                                            <button class="btn btn-sm btn-outline-primary" onclick="document.getElementById('listening-audio').play()">
+                                                <i class="bi bi-play-fill"></i> Play
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('listening-audio').pause()">
+                                                <i class="bi bi-pause-fill"></i> Pause
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger" onclick="document.getElementById('listening-audio').load()">
+                                                <i class="bi bi-arrow-counterclockwise"></i> Reset
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            {% endfor %}
                         </div>
+                        {% endif %}
+
+                        {% if passage %}
+                        <div class="reading-section mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="bi bi-book"></i> Reading Section</h5>
+                                    <div class="passage-content">
+                                        {% set lines = passage.strip().split('\n') %}
+                                        {% if lines|length > 0 %}
+                                            <h4 class="mb-3">{{ lines[0] }}</h4>
+                                            <div class="passage-text" style="color: #333; line-height: 1.6; font-size: 1.1rem;">
+                                                {% for line in lines[1:] %}
+                                                    {% if line.strip() %}
+                                                        <p class="mb-3">{{ line }}</p>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    <form id="answer-form" action="{{ url_for('answer') }}" method="POST">
+                    <div class="questions">
+                        {% for question in questions|sort(attribute='id') %}
+                            <div class="question mb-4">
+                                {% if question.type == 'blank' %}
+                                    <p><i class="bi bi-patch-question-fill"></i> {{ question.text }}</p>
+                                    {% for blank in question.blanks %}
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon1">Answer | 答案</span>
+                                            <input type="text" class="form-control" name="q{{ question.id }}_{{ blank.id }}"
+                                                aria-label="" aria-describedby="basic-addon1">
+                                        </div>
+                                    {% endfor %}
+                                    
+                                {% elif question.type == 'multiple_choice' %}
+                                    <div class="mb-3">
+                                        <p><i class="bi bi-patch-question-fill"></i> {{ question.prompt }}</p>
+                                        {% for choice in question.choices %}
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" 
+                                                    name="q{{ question.id }}" 
+                                                    id="q{{ question.id }}_{{ choice.id }}" 
+                                                    value="{{ choice.id }}">
+                                                <label class="form-check-label" for="q{{ question.id }}_{{ choice.id }}">
+                                                    {{ choice.text }}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                
+                                {% elif question.type == 'more_choice' %}
+                                    <div class="mb-3">
+                                        <p><i class="bi bi-patch-question-fill"></i> {{ question.prompt }}</p>
+                                        {% for choice in question.choices %}
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" 
+                                                    name="q{{ question.id }}_{{ choice.id }}" 
+                                                    id="q{{ question.id }}_{{ choice.id }}" 
+                                                    value="{{ choice.id }}">
+                                                <label class="form-check-label" for="q{{ question.id }}_{{ choice.id }}">
+                                                    {{ choice.text }}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
                         {% endfor %}
                     </div>
                     <div class="mb-4">
@@ -72,7 +156,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 Starmony. All rights reserved.</p>
+        <p>&copy; 2024 Oscar So. All rights reserved.</p>
     </footer>
 
 </body>
