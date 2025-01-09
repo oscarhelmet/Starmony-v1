@@ -1,69 +1,87 @@
 import xml.etree.ElementTree as ET
 import requests
+import re
 
 def parse_question_xml(xml):
     """Parse the XML question data and return a list of questions."""
-    root = ET.fromstring(xml)
-    questions = []
     
-    # Process regular questions with blanks
-    for question_node in root.findall('q'):
-        question_text = question_node.text.strip() if question_node.text else ""
-        blanks = []
+    # First handle non-XML formats
+    if not (xml.startswith("<question>") or xml.startswith("<questions>")):
+        lines = xml.strip().split('\n')
+        if not lines:
+            return ""
         
-        for elem in question_node:
-            if elem.tag == 'blank':
-                blanks.append({
-                    'id': elem.get('id'),
-                    'text': elem.text.strip() if elem.text else ""
-                })
-                question_text += elem.text.strip() if elem.text else ""
+        start_words = lines[0].strip()
+        pattern = rf'{re.escape(start_words)}\s*(.*)'
+        match = re.search(pattern, xml, re.DOTALL)
+        if match:
+            xml = match.group(1).strip()
+    
+    try:
+        root = ET.fromstring(xml)
+        questions = []
+        
+        # Process regular questions with blanks
+        for question_node in root.findall('q'):
+            question_text = question_node.text.strip() if question_node.text else ""
+            blanks = []
             
-            if elem.tail:
-                question_text += elem.tail.strip()
-        
-        questions.append({
-            'type': 'blank',
-            'id': question_node.get('id'),
-            'text': question_text,
-            'blanks': blanks
-        })
-    
-    # Process multiple choice questions (radio)
-    for mc_node in root.findall('multiple_choice'):
-        prompt = mc_node.find('prompt').text.strip() if mc_node.find('prompt') is not None else ""
-        choices = []
-        for choice in mc_node.findall('choice'):
-            choices.append({
-                'id': choice.get('id'),
-                'text': choice.text.strip() if choice.text else ""
+            for elem in question_node:
+                if elem.tag == 'blank':
+                    blanks.append({
+                        'id': elem.get('id'),
+                        'text': elem.text.strip() if elem.text else ""
+                    })
+                    question_text += elem.text.strip() if elem.text else ""
+                
+                if elem.tail:
+                    question_text += elem.tail.strip()
+            
+            questions.append({
+                'type': 'blank',
+                'id': question_node.get('id'),
+                'text': question_text,
+                'blanks': blanks
             })
         
-        questions.append({
-            'type': 'multiple_choice',
-            'id': mc_node.get('id'),
-            'prompt': prompt,
-            'choices': choices
-        })
-    
-    # Process checkbox questions
-    for more_choice_node in root.findall('more_choice'):
-        prompt = more_choice_node.find('prompt').text.strip() if more_choice_node.find('prompt') is not None else ""
-        choices = []
-        for choice in more_choice_node.findall('choice'):
-            choices.append({
-                'id': choice.get('id'),
-                'text': choice.text.strip() if choice.text else ""
+        # Process multiple choice questions (radio)
+        for mc_node in root.findall('multiple_choice'):
+            prompt = mc_node.find('prompt').text.strip() if mc_node.find('prompt') is not None else ""
+            choices = []
+            for choice in mc_node.findall('choice'):
+                choices.append({
+                    'id': choice.get('id'),
+                    'text': choice.text.strip() if choice.text else ""
+                })
+            
+            questions.append({
+                'type': 'multiple_choice',
+                'id': mc_node.get('id'),
+                'prompt': prompt,
+                'choices': choices
             })
         
-        questions.append({
-            'type': 'more_choice',
-            'id': more_choice_node.get('id'),
-            'prompt': prompt,
-            'choices': choices
-        })
+        # Process checkbox questions
+        for more_choice_node in root.findall('more_choice'):
+            prompt = more_choice_node.find('prompt').text.strip() if more_choice_node.find('prompt') is not None else ""
+            choices = []
+            for choice in more_choice_node.findall('choice'):
+                choices.append({
+                    'id': choice.get('id'),
+                    'text': choice.text.strip() if choice.text else ""
+                })
+            
+            questions.append({
+                'type': 'more_choice',
+                'id': more_choice_node.get('id'),
+                'prompt': prompt,
+                'choices': choices
+            })
+        
+        return questions
     
-    return questions
+    except ET.ParseError:
+        return []
 
 def render_questions(questions):
     """Render the questions on the page."""

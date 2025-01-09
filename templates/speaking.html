@@ -23,6 +23,10 @@
             color: white;
             border-radius: 15px 15px 0 0 !important;
         }
+        .input-group .form-range {
+            height: 38px;
+            padding: 0 15px;
+        }
 
         /* Loading Overlay Styles */
         .loading-overlay {
@@ -72,36 +76,47 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
   </style>
 </head>
-<header>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/reading">Reading</a></li>
-        <li><a href="/listening">Listening</a></li>
-        <li><a href="/generate">Custom Quiz</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <!-- Add Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <div class="loading-quote" id="loadingQuote"></div>
+<body>
+    <header>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/reading">Reading</a></li>
+            <li><a href="/listening">Listening</a></li>
+            <li><a href="/generate">Custom Quiz</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <!-- Add Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <div class="loading-quote" id="loadingQuote"></div>
+            </div>
         </div>
-    </div>
 
-    <div class="row justify-content-center" style="min-height: calc(100vh - 50px - 76.78px - 96px) !important;
-    align-items: center;">
+        <div class="row justify-content-center" style="min-height: calc(100vh - 50px - 76.78px - 96px) !important;
+        align-items: center;">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header text-center py-3">
-                        <h2 class="mb-0">Starmony - Question Generator</h2>
+                        <h2 class="mb-0">Starmony - Reading Practice</h2>
                     </div>
                     <div class="card-body p-4">
-                        <form id="question-form" action="{{ url_for('generate_questions') }}" method="post">
+                        <form id="question-form" action="{{ url_for('speaking') }}" method="post">
                             <div class="mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text">Grade</span>
@@ -115,41 +130,24 @@
                             </div>
                             <div class="mb-3">
                                 <div class="input-group">
-                                    <span class="input-group-text">Subject</span>
-                                    <select id="subject" name="subject" class="form-select" required>
-                                        <option value="Chinese">Chinese</option>
+                                    <span class="input-group-text">Language</span>
+                                    <select id="language" name="language" class="form-select" required>
+                                        <option value="Chinese (Traditional)">Chinese (Traditional)</option>
+                                        <option value="Chinese (Simplified)">Chinese (Simplified)</option>
                                         <option value="English">English</option>
-                                        <option value="Maths">Maths</option>
-                                        <option value="Information & Comm Tech">Information & Comm Tech</option>
-                                        <option value="Science">Science</option>
-                                        <option value="Geography">Geography</option>
+                                        <option value="Japanese">Japanese</option>
+                                        <option value="German"">German</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text">Chapter</span>
-                                    <input type="text" id="chapter" name="chapter" class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="mb-4">
-                                <div class="input-group">
-                                    <span class="input-group-text">Language</span>
-                                    <select id="language" name="language" class="form-select" required>
-                                        <option value="Traditional Chinese (HK)">Chinese (ZH)</option>
-                                        <option value="Simplified Chinese">Chinese (CN)</option>
-                                        <option value="English">English</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <div class="input-group">
-                                    <span class="input-group-text">Number of Question</span>
-                                    <input type="number" id="noq" name="noq" class="form-control" required>
+                                    <input type="text" id="chapter" name="chapter" class="form-control">
                                 </div>
                             </div>
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary btn-lg">Generate Questions</button>
+                                <button type="submit" class="btn btn-primary btn-lg">Generate Reading Practice</button>
                             </div>
                         </form>
                     </div>
@@ -165,11 +163,11 @@
         const loadingOverlay = document.getElementById('loadingOverlay');
         const loadingQuote = document.getElementById('loadingQuote');
         const quotes = [
-            "Generating your custom questions...",
-            "Creating personalised practice materials...",
-            "Tailoring questions to your requirements...",
+            "Preparing your reading practice...",
+            "Generating educational content...",
+            "Crafting your learning experience...",
             "Almost ready...",
-            "Preparing your learning experience..."
+            "Setting up your practice session..."
         ];
         let quoteInterval;
 

@@ -26,6 +26,7 @@ def generate_questions():
 
         # Generate the questions XML using the provided parameters
         respond = generate_question(grade, subject, chapter, language,noq)
+        print(respond)
         questions_xml, answers = seperate_qa(respond)
         f = open(f"questions_set/{session}.xml", "w")
         f.write(f"questions: {questions_xml}, Modal Answers for checking: {answers}")
@@ -49,12 +50,13 @@ def listening():
         grade = request.form['grade']
         chapter = request.form['chapter']
         speed = request.form['speed']
+        language = request.form['language']
         
         # Generate the questions using the provided parameters
-        respond = gen_listening(grade=grade, chapter=chapter)
+        respond = gen_listening(grade=grade, chapter=chapter, language=language)
         ssml, questions_xml, answers = seperate_session(respond)
         
-        print
+        # print  
 
         # Save questions and answers
         f = open(f"questions_set/{session}.xml", "w")
@@ -79,12 +81,14 @@ def reading():
     if request.method == 'POST':
         grade = request.form['grade']
         chapter = request.form['chapter']
+        language = request.form['language']
+
         
         # Generate the questions using the provided parameters
-        respond = gen_reading(grade=grade, chapter=chapter)
+        respond = gen_reading(grade=grade, chapter=chapter, language=language)
         passage, questions_xml, answers = seperate_reading(respond)
         
-        print
+        print(respond)
 
         # Save questions and answers
         f = open(f"questions_set/{session}.xml", "w")

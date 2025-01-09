@@ -2,13 +2,37 @@ from llm.google import Google
 from llm.utils import remove_code_blocks
 import random
 
-def gen_listening(grade, chapter=None):
+def gen_listening(grade, chapter=None, language="English"):
 
 
-    if chapter == None:
+    if not chapter:
+
+        tone = random.randint(0,4)
+        tone_dict = {
+            0: "Be creative and concise.",
+            1: "Be Scientific and technical.",
+            2: "Be professional and formal.",
+            3: "Be casual and friendly.",
+            4: "School level"
+        }
+        tone = tone_dict[tone]
         seed = random.randint(0,10000000) 
-        chapter=f"random topic,  seed = {seed}"
+        random_topic = f"""Generate a random, specific and interesting topic in one short sentence. 
+        {tone}.
+        Topic should be suitable for exploration of the world!!.
+        Output only the topic without any additional text.
+        seed = {seed}
+        """
 
+        chapter = Google()\
+            .generate(template=random_topic,
+                top_p=0.95,
+                temperature=1,
+                top_k=20,
+                max_output_tokens=50)
+
+    if language == "Cantonese":
+        language = "Written (Display in formal written language): Chinese (Traditional), Spoken (SSML only): Cantonese"
 
     grade_descriptions = {
         0 : 'Easy and entry level for students who just starts to learn, assume they just know very easy words',
@@ -19,95 +43,98 @@ def gen_listening(grade, chapter=None):
 
     print(grade, chapter)
 
-    system_instruction = """
+    system_instruction = f"""
     You will be given a topic and you need to make a scripts for beginners' listening test in the following ssml (GCP T2S) format.
-After one, you will be making a list of 5- 10 questions in a code block (including fill in the blanks, The questions could mostly be a note jotting style (point  form), Multiple choices {dont make all b, evenly distributed}, but without any spelling questions, directly e.g. The colour of banana: ______, instead of how to spell yellow.)  [student version]
-Add a Breakline and code blocks the answers.
-example:
+        After one, you will be making a list of 5- 10 questions in a code block (including fill in the blanks, The questions could mostly be a note jotting style (point  form), Multiple choices (dont make all b, evenly distributed), but without any spelling questions, directly e.g. The colour of banana: ______, instead of how to spell yellow.)  [student version]
+        Add a Breakline and code blocks the answers.
 
-```
-<speak>
-  Here are <say-as interpret-as="characters">SSML</say-as> samples.
-  I can pause <break time="3s"/>.
-  I can play a sound
-  <audio src="https://www.example.com/MY_MP3_FILE.mp3">didn't get your MP3 audio file</audio>.
-  I can speak in cardinals. Your number is <say-as interpret-as="cardinal">10</say-as>.
-  Or I can speak in ordinals. You are <say-as interpret-as="ordinal">10</say-as> in line.
-  Or I can even speak in digits. The digits for ten are <say-as interpret-as="characters">10</say-as>.
-  I can also substitute phrases, like the <sub alias="World Wide Web Consortium">W3C</sub>.
-  Finally, I can speak a paragraph with two sentences.
-    <p><s><voice name="en-US-Wavenet-J">Hey everyone, thanks for coming to the meeting today.</voice></s></p>
-  <p><s><voice name="en-US-Wavenet-A">Ya.</voice></s></p>
-</speak>
-```
-- The questions should be straight forward
--```example questions
-The family is going to __________ on vacation
-Leaving Time _____________
-Flight Time ________________
-``` Ommit using complete sentence to ask 
--the script should use easy words
--try to repeat the information, after the one says,
--if that is a phone number, repeat it, if there is a name, spell it [make a 3ms pause between each letter], Like {E<break time="5ms"/>N<break time="5ms"/>G<break time="5ms"/>L<break time="5ms"/>I<break time="5ms"/>S<break time="5ms"/>H <break time="10ms"/>}. ONLY personal information will be spelt, instead of normal words.
--When introducing the characters, use third person to introduce, like (B:Hey, Andy! A:Hi!)
--For voice types female= {a,c,f}, male = {b,d} (Assign the names to corresponding wavenet), use GB, except others accent specified. If asked to generate in foreign language like japanese accent, use back their own language instead of en-JP (e.g. ja-JP), but in English context, so that it will return strong accent, if it is hong kong use yue-HK-Standard-{}
--If the voice is in foreign language, use the language code of the language, e.g. ja-JP for japanese, en only support [en-US, en-GB, en-AU, en-IN] only.
--Try to add some emotion tag or pitch to make it more natural
--<speak> is like <html> bound the whole speech and </speak> end in the end
--instead of prasody and par, please use <p> and <s> to bound the one sentence
--Before the speech, please add. ``` <voice name="en-GB-Standard-B">The recording is about to begin.</voice>
-<audio src="https://www.soundjay.com/buttons/beep-01a.mp3"></audio>
-<break time="2s"/>``` 
+        You are making a listening test for {language} language.
+        example:
 
--After the speech, please add. beep``` 
-<audio src="https://www.soundjay.com/buttons/beep-01a.mp3"></audio>
-<voice name="en-GB-Standard-B">That is the end of the recording. You will have 1 minute to tidy up your answers.</voice>
-<break time="2s"/>
--beep src <audio src="https://www.soundjay.com/buttons/beep-01a.mp3"></audio>
+        ```
+        <speak>
+        Here are <say-as interpret-as="characters">SSML</say-as> samples.
+        I can pause <break time="3s"/>.
+        I can play a sound
+        <audio src="https://www.example.com/MY_MP3_FILE.mp3">didn't get your MP3 audio file</audio>.
+        I can speak in cardinals. Your number is <say-as interpret-as="cardinal">10</say-as>.
+        Or I can speak in ordinals. You are <say-as interpret-as="ordinal">10</say-as> in line.
+        Or I can even speak in digits. The digits for ten are <say-as interpret-as="characters">10</say-as>.
+        I can also substitute phrases, like the <sub alias="World Wide Web Consortium">W3C</sub>.
+        Finally, I can speak a paragraph with two sentences.
+            <p><s><voice name="en-US-Wavenet-J">Hey everyone, thanks for coming to the meeting today.</voice></s></p>
+        <p><s><voice name="en-US-Wavenet-A">Ya.</voice></s></p>
+        </speak>
+        ```
+        - The questions should be straight forward in the assigned language (output in {language})
+        -```example questions 
+        The family is going to __________ on vacation
+        Leaving Time _____________
+        Flight Time ________________
+        ``` Ommit using complete sentence to ask 
+        -the script should use easy words
+        -try to repeat the information, after the one says,
+        -if that is a phone number, repeat it, if there is a name, spell it [make a 3ms pause between each letter], Like [E<break time="5ms"/>N<break time="5ms"/>G<break time="5ms"/>L<break time="5ms"/>I<break time="5ms"/>S<break time="5ms"/>H <break time="10ms"/>]. ONLY personal information will be spelt, instead of normal words.
+        -When introducing the characters, use third person to introduce, like (B:Hey, Andy! A:Hi!)
+        -For voice types female= [a,c,f], male = [b,d] (Assign the names to corresponding wavenet), use GB, except others accent specified. If asked to generate in foreign language like japanese accent, use back their own language instead of en-JP (e.g. ja-JP), but in English context, so that it will return strong accent, if it is hong kong use yue-HK-Standard-[A,B,C,D ONLY]
+        -If the voice is in foreign language, use the language code of the language, e.g. ja-JP for japanese, en only support [en-US, en-GB, en-AU, en-IN] only.
+        -Try to add some emotion tag or pitch to make it more natural
+        -<speak> is like <html> bound the whole speech and </speak> end in the end
+        -instead of prasody and par, please use <p> and <s> to bound the one sentence
+        -Before the speech, please add. (translate to {language}, including the voice name, if that is English, use en-GB-Standard-B) ``` <voice name="">The recording is about to begin.</voice>
+        <audio src="https://www.soundjay.com/buttons/beep-01a.mp3"></audio>
+        <break time="2s"/>``` 
 
-- for quesions, use the following xml format:
-    ```
-    <question>
-        <!-- Fill in the blank question -->
-        <q id="1">
-            What is 1+1? <blank id="1"></blank>
-        </q>
+        -After the speech, please add. (translate to {language}, including the voice name, if that is English, use en-GB-Standard-B) beep``` 
+        <audio src="https://www.soundjay.com/buttons/beep-01a.mp3"></audio>
+        <voice name="">That is the end of the recording. You will have 1 minute to tidy up your answers.</voice>
+        <break time="2s"/>
+        -beep src <audio src="https://www.soundjay.com/buttons/beep-01a.mp3"></audio>
+
+        - for quesions, use the following xml format:
+            ```
+            <question>
+                <!-- Fill in the blank question -->
+                <q id="1">
+                    What is 1+1? <blank id="1"></blank>
+                </q>
+                
+                <!-- Fill in the blank with inline display, multiple blanks -->
+                <q id="2">
+                    Inline <blank id="1">_____</blank>(look) like this. And I would <blank id="2">_____</blank>(like) to look like this.
+                </q>
+                
+                <!-- Multiple choice question (radio - single selection) -->
+                <multiple_choice id="3">
+                    <prompt>Which of the following is correct?</prompt>
+                    <choice id="1">A. First option</choice>
+                    <choice id="2">B. Second option</choice>
+                    <choice id="3">C. Third option</choice>
+                    <choice id="4">D. Fourth option</choice>
+                </multiple_choice>
+                
+                <!-- Multiple choice question (checkbox - multiple selections) -->
+                <more_choice id="4">
+                    <prompt>Select all that apply:</prompt>
+                    <choice id="1">A. First option</choice>
+                    <choice id="2">B. Second option</choice>
+                    <choice id="3">C. Third option</choice>
+                    <choice id="4">D. Fourth option</choice>
+                </more_choice>
+            </question>
+            ```
+        DO NOT include other xml elements other than those in this code block.
+        -for answers, use the following format:
+            ```
+            1. 2
+            2. blank
+            ```
+        -for all output code blocks, just use 
+        ```(NO TYPE SPECIFICATION)
+        content 
+        ``` is fine for the parser, other wise will be ignored.
         
-        <!-- Fill in the blank with inline display, multiple blanks -->
-        <q id="2">
-            Inline <blank id="1">_____</blank>(look) like this. And I would <blank id="2">_____</blank>(like) to look like this.
-        </q>
-        
-        <!-- Multiple choice question (radio - single selection) -->
-        <multiple_choice id="3">
-            <prompt>Which of the following is correct?</prompt>
-            <choice id="1">A. First option</choice>
-            <choice id="2">B. Second option</choice>
-            <choice id="3">C. Third option</choice>
-            <choice id="4">D. Fourth option</choice>
-        </multiple_choice>
-        
-        <!-- Multiple choice question (checkbox - multiple selections) -->
-        <more_choice id="4">
-            <prompt>Select all that apply:</prompt>
-            <choice id="1">A. First option</choice>
-            <choice id="2">B. Second option</choice>
-            <choice id="3">C. Third option</choice>
-            <choice id="4">D. Fourth option</choice>
-        </more_choice>
-    </question>
-    ```
-
--for answers, use the following format:
-    ```
-    1. 2
-    2. blank
-    ```
--for all output code blocks, just use 
-```(NO TYPE SPECIFICATION)
-content 
-``` is fine for the parser, other wise will be ignored.
-    """
+        If there is a phone number, please make it as <say-as interpret-as="characters">{random.randint(10000000, 99999999)}</say-as>"""
 
 
     template = f"""Make a set of questions for {chapter} with the style of {grade_descriptions[int(grade)]}."""
@@ -140,7 +167,7 @@ def seperate_session(input):
         return None, None, None
         
     # Get the content from each code block
-    ssml = parts[0]
+    ssml = parts[0].lstrip("xml") if parts[0].startswith("xml") else parts[0]
     questions = parts[1] 
     answers = parts[2]
     

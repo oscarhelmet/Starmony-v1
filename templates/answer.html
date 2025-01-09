@@ -14,6 +14,88 @@
 	<script type="text/javascript"
 		  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 	</script>
+    <style>
+                :root {
+            --primary-color: #007bff;
+            --secondary-color: #1b3bef;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-content {
+            position: relative;  /* Add this line */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            width: 90%;
+            max-width: 300px;
+        }
+
+        .btn-close {
+            position: fixed;  /* Changed from absolute to fixed */
+            top: 20px;
+            right: 20px;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            background-color: var(--primary-color);
+            z-index: 1001;  /* Make sure it's above the overlay */
+        }
+
+        .btn-close:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .loading-spinner {
+            border: 4px solid var(--secondary-color);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-quote {
+            font-style: italic;
+            margin-top: 1rem;
+            font-size: 1rem;
+            line-height: 1.4;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .loading-quote.fade-out {
+            opacity: 0;
+        }
+
+        .loading-quote.fade-in {
+            opacity: 1;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 
 <body>
@@ -30,6 +112,17 @@
     </header>
 
     <main>
+
+        <div class="loading-overlay" id="loadingOverlay">
+            <button type="button" class="btn-close" onclick="hideLoading()">
+                <i class="bi bi-x-lg" style="color: white; font-size: 1.2rem;"></i>
+            </button>
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <div class="loading-quote" id="loadingQuote"></div>
+            </div>
+        </div>
+
         <div class="row justify-content-center" style="min-height: calc(100vh - 50px - 76.78px - 96px) !important;
     align-items: center;">
             <div class="col-md-8">
@@ -153,10 +246,63 @@
         </div>
         </div>
         </div>
+
+    
     </main>
 
+    <script>
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const loadingQuote = document.getElementById('loadingQuote');
+        const quotes = [
+            "Checking your answers...",
+            "Analysing your performance...",
+            "Preparing your feedback...",
+            "Generating your performance report...",
+            "Creating personalised recommendations..."
+        ];
+        let quoteInterval;
+
+        function shuffleQuote() {
+            loadingQuote.classList.add('fade-out');
+            setTimeout(() => {
+                loadingQuote.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+                loadingQuote.classList.remove('fade-out');
+                loadingQuote.classList.add('fade-in');
+                setTimeout(() => {
+                    loadingQuote.classList.remove('fade-in');
+                }, 500);
+            }, 500);
+        }
+
+        function showLoading() {
+            loadingOverlay.style.display = 'flex';
+            shuffleQuote();
+            quoteInterval = setInterval(shuffleQuote, 5000);
+        }
+
+        function hideLoading() {
+            loadingOverlay.style.display = 'none';
+            clearInterval(quoteInterval);
+        }
+
+        // Add form submission handler
+        document.getElementById('answer-form').addEventListener('submit', function(e) {
+            // Validate form if needed
+            showLoading();
+        });
+
+        // Initialize the quote
+        loadingQuote.textContent = quotes[0];
+
+        // Add audio playback rate control if audio exists
+        const audio = document.getElementById('listening-audio');
+        if (audio) {
+            audio.playbackRate = {{ speed|default(1.0) }};
+        }
+    </script>
+
     <footer>
-        <p>&copy; 2024 Oscar So. All rights reserved.</p>
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> Starmony by Oscar So. All rights reserved.</p>
     </footer>
 
 </body>
