@@ -1,11 +1,34 @@
 from llm.google import Google 
 from llm.utils import remove_code_blocks
+import random 
 
-def gen_reading(grade, chapter=None):
+def gen_reading(grade, chapter=None, language="English"):
 
-    if chapter == None:
+    if not chapter:
+
+        tone = random.randint(0,4)
+        tone_dict = {
+            0: "Be creative and concise.",
+            1: "Be Scientific and technical.",
+            2: "Be professional and formal.",
+            3: "Be casual and friendly.",
+            4: "School level"
+        }
+        tone = tone_dict[tone]
         seed = random.randint(0,10000000) 
-        chapter=f"random topic,  seed = {seed}"
+        random_topic = f"""Generate a random, specific and interesting topic in one short sentence. 
+        {tone}.
+        Topic should be suitable for exploration of the world!!.
+        Output only the topic without any additional text.
+        seed = {seed}
+        """
+
+        chapter = Google()\
+            .generate(template=random_topic,
+                top_p=0.95,
+                temperature=1,
+                top_k=20,
+                max_output_tokens=50)
 
 
     grade_descriptions = {
@@ -17,16 +40,17 @@ def gen_reading(grade, chapter=None):
 
     print(grade, chapter)
 
-    system_instruction = """
+    system_instruction = f"""
+    You are generating a reading passage for a student in {language} for comprehension questions.
 -Make 3 code blocks to show 3 different things
--1: A reading passage (include a title)
--2: a set of questions (Multiple-choice, Fill in the blanks, summary cloze, long questions[reply in complete sentence])
+-1: A Long reading passage (include a title, at least 5 long paragraph)
+-2: a set of questions (Refer to [e.g. what does he refer to], Fill in a table, Categorisation, Multiple-choice, Fill in the blanks, summary cloze, long questions[reply in complete sentence], matching [A. XXX B. YYY C. ZZZ and 1. aaa 2. bbb. 3. ccc])
 -3: answers for the questions 
 
-- Difficulties: IETLS level 2-5 [equivalent: Hong Kong Secondary 1-3]
-- Questions limits less than 30
+- Difficulties: for IELTS level 2-7, specify below
+- Questions 25
 
-- for quesions, use the following xml format:
+- for quesions in {language}, use the following xml format:
     <question>
         <q id="1">
             Question <blank id="1">_____</blank> is cool.

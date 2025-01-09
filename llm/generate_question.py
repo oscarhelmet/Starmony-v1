@@ -51,14 +51,14 @@ def generate_question(grade, subject, chapter, language, noq):
         </more_choice>
     </question>
     ```
-
+    Do not include any other xml elements
     -for answers, use the following format:
         ```
         1. 2
         2. blank
         ```
     -for all output code blocks, just use 
-    ```(NO TYPE SPECIFICATION)
+    "```", instead of "```answers" or "```xml"
     content 
     ``` is fine for the parser, other wise will be ignored.
     """

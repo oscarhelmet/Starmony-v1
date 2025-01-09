@@ -8,83 +8,19 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
-       :root {
-           --primary-color: #007bff;
-           --secondary-color: #1b3bef;
-       }
-
        .card {
             border: none;
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         .card-header {
-            background-color: var(--primary-color);
+            background-color: #007bff;
             color: white;
             border-radius: 15px 15px 0 0 !important;
         }
         .input-group .form-range {
             height: 38px;
             padding: 0 15px;
-        }
-
-        /* Loading Overlay Styles */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .loading-content {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 1rem;
-            width: 90%;
-            max-width: 300px;
-        }
-        .loading-spinner {
-            border: 4px solid var(--secondary-color);
-            border-top: 4px solid var(--primary-color);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-        }
-        .loading-quote {
-            font-style: italic;
-            margin-top: 1rem;
-            font-size: 1rem;
-            line-height: 1.4;
-            transition: opacity 0.5s ease-in-out;
-        }
-        .loading-quote.fade-out {
-            opacity: 0;
-        }
-        .loading-quote.fade-in {
-            opacity: 1;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
         }
   </style>
 </head>
@@ -100,14 +36,6 @@
         </nav>
       </header>
       <main>
-        <!-- Add Loading Overlay -->
-        <div class="loading-overlay" id="loadingOverlay">
-            <div class="loading-content">
-                <div class="loading-spinner"></div>
-                <div class="loading-quote" id="loadingQuote"></div>
-            </div>
-        </div>
-
         <div class="row justify-content-center" style="min-height: calc(100vh - 50px - 76.78px - 96px) !important;
         align-items: center;">
             <div class="col-md-8">
@@ -154,53 +82,12 @@
                 </div>
             </div>
         </div>
+    
+
     </main>
     <footer>
         <p>&copy; <script>document.write(new Date().getFullYear())</script> Starmony by Oscar So. All rights reserved.</p>
     </footer>
-
-    <script>
-        const loadingOverlay = document.getElementById('loadingOverlay');
-        const loadingQuote = document.getElementById('loadingQuote');
-        const quotes = [
-            "Preparing your reading practice...",
-            "Generating educational content...",
-            "Crafting your learning experience...",
-            "Almost ready...",
-            "Setting up your practice session..."
-        ];
-        let quoteInterval;
-
-        function shuffleQuote() {
-            loadingQuote.classList.add('fade-out');
-            setTimeout(() => {
-                loadingQuote.textContent = quotes[Math.floor(Math.random() * quotes.length)];
-                loadingQuote.classList.remove('fade-out');
-                loadingQuote.classList.add('fade-in');
-                setTimeout(() => {
-                    loadingQuote.classList.remove('fade-in');
-                }, 500);
-            }, 500);
-        }
-
-        function showLoading() {
-            loadingOverlay.style.display = 'flex';
-            shuffleQuote();
-            quoteInterval = setInterval(shuffleQuote, 5000);
-        }
-
-        function hideLoading() {
-            loadingOverlay.style.display = 'none';
-            clearInterval(quoteInterval);
-        }
-
-        // Add form submission handler
-        document.getElementById('question-form').addEventListener('submit', function(e) {
-            showLoading();
-        });
-
-        // Initialize the quote
-        loadingQuote.textContent = quotes[0];
-    </script>
+    <!-- <script src="{{ url_for('static', filename='js/questions.js') }}"></script> -->
 </body>
 </html>
